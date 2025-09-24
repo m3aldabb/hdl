@@ -10,18 +10,43 @@ module ssd_ctrl (
 
 // Constants and Parameters
 typedef enum logic [6:0] {
-    ZERO  = 7'b1000000,
-    ONE   = 7'b1111001,
-    TWO   = 7'b0100100,
-    THREE = 7'b0110000,
-    FOUR  = 7'b0011001,
-    FIVE  = 7'b0010010,
-    SIX   = 7'b0000010,
-    SEVEN = 7'b1111000,
-    EIGHT = 7'b0000000,
-    NINE  = 7'b0010000 
-} led_nums_t;
+    ZERO    = 7'b1000000,
+    ONE     = 7'b1111001,
+    TWO     = 7'b0100100,
+    THREE   = 7'b0110000,
+    FOUR    = 7'b0011001,
+    FIVE    = 7'b0010010,
+    SIX     = 7'b0000010,
+    SEVEN   = 7'b1111000,
+    EIGHT   = 7'b0000000,
+    NINE    = 7'b0010000,
 
+    CHAR_A  = 7'b0001000, 
+    CHAR_B  = 7'b0000011,
+    CHAR_C  = 7'b1000110,
+    CHAR_D  = 7'b0100001,
+    CHAR_E  = 7'b0000110,
+    CHAR_F  = 7'b0001110,
+    CHAR_G  = 7'b1000010,
+    CHAR_H  = 7'b0001011,
+    CHAR_I  = 7'b1111001,
+    CHAR_J  = 7'b1100001,
+    CHAR_L  = 7'b1000111,
+    CHAR_N  = 7'b0101011,
+    CHAR_O  = 7'b1000000,
+    CHAR_P  = 7'b0001100,
+    CHAR_Q  = 7'b0011000,
+    CHAR_R  = 7'b1001100,
+    CHAR_S  = 7'b0010010,
+    CHAR_T  = 7'b0000111,
+    CHAR_U  = 7'b1000001,
+    CHAR_Y  = 7'b0010001,
+    CHAR_Z  = 7'b0100100,
+
+    CHAR_DASH     = 7'b0111111,
+    CHAR_UNDERSCORE = 7'b1111110,
+    CHAR_EQUAL    = 7'b0111110
+} led_chars_t;
 
 // Signals and Registers
 logic [3:0]     bcd_digit;
@@ -68,17 +93,24 @@ end
 // Lookup table to match BCD number to SSD encoding for LED display.
 always @(*) begin
   case(bcd_digit)
-    4'd0: o_led = ZERO; 
-    4'd1: o_led = ONE;
-    4'd2: o_led = TWO;
-    4'd3: o_led = THREE;
-    4'd4: o_led = FOUR;
-    4'd5: o_led = FIVE;
-    4'd6: o_led = SIX;
-    4'd7: o_led = SEVEN;
-    4'd8: o_led = EIGHT;
-    4'd9: o_led = NINE;
-    default: o_led = ZERO;
+    4'd0:  o_led = ZERO; 
+    4'd1:  o_led = ONE;
+    4'd2:  o_led = TWO;
+    4'd3:  o_led = THREE;
+    4'd4:  o_led = FOUR;
+    4'd5:  o_led = FIVE;
+    4'd6:  o_led = SIX;
+    4'd7:  o_led = SEVEN;
+    4'd8:  o_led = EIGHT;
+    4'd9:  o_led = NINE;
+    4'd10: o_led = CHAR_A;
+    4'd11: o_led = CHAR_B;
+    4'd12: o_led = CHAR_C;
+    4'd13: o_led = CHAR_D;
+    4'd14: o_led = CHAR_E;
+    4'd15: o_led = CHAR_F;
+
+    default: o_led = CHAR_DASH;
   endcase
 end
 
