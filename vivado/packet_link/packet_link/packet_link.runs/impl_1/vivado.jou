@@ -1,0 +1,24 @@
+#-----------------------------------------------------------
+# Vivado v2025.1 (64-bit)
+# SW Build 6140274 on Wed May 21 22:58:25 MDT 2025
+# IP Build 6138677 on Thu May 22 03:10:11 MDT 2025
+# SharedData Build 6139179 on Tue May 20 17:58:58 MDT 2025
+# Start of session at: Wed Sep 24 22:40:00 2025
+# Process ID         : 42266
+# Current directory  : /home/md/Work/hdl/vivado/packet_link/packet_link/packet_link.runs/impl_1
+# Command line       : vivado -log top.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source top.tcl -notrace
+# Log file           : /home/md/Work/hdl/vivado/packet_link/packet_link/packet_link.runs/impl_1/top.vdi
+# Journal file       : /home/md/Work/hdl/vivado/packet_link/packet_link/packet_link.runs/impl_1/vivado.jou
+# Running On         : mdxps15
+# Platform           : Ubuntu
+# Operating System   : Ubuntu 24.04.3 LTS
+# Processor Detail   : Intel(R) Core(TM) i7-10750H CPU @ 2.60GHz
+# CPU Frequency      : 2826.052 MHz
+# CPU Physical cores : 6
+# CPU Logical cores  : 12
+# Host memory        : 16501 MB
+# Swap memory        : 4294 MB
+# Total Virtual      : 20796 MB
+# Available Virtual  : 16631 MB
+#-----------------------------------------------------------
+source top.tcl -notrace
