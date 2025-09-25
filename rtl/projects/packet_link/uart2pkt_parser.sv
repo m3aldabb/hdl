@@ -8,7 +8,7 @@ module uart2pkt_parser #(
     input  logic [7:0]       i_data,
     input  logic             i_valid,
 
-    output logic [8*PKTLEN-1:0] o_data,
+    output logic [15:0] o_data,
     output logic             o_valid
 );
 
@@ -130,6 +130,6 @@ end
 
 // Output
 assign o_valid = packet_good;
-assign o_data  = {END_BYTE, checksum, pd_rev, pkt_length, pkt_type, START_BYTE};
-
+//assign o_data  = {END_BYTE, checksum, pd_rev, pkt_length, pkt_type, START_BYTE};
+assign o_data = pd;
 endmodule
