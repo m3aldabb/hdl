@@ -7,6 +7,7 @@ module fifo #(parameter DATA_WIDTH = 8, parameter DEPTH = 16) (
 
     input rd,
     output logic [DATA_WIDTH-1:0] o_data,
+    output logic                  o_valid,
     
     output full,
     output empty
@@ -20,10 +21,14 @@ always_ff @(posedge clk) begin
     if(rst) begin
         wr_ptr  <= '0;
         rd_ptr  <= '0;
+        o_valid <= 1'b0;
     end else begin
         if(rd && !empty) begin
             o_data  <= mem[rd_ptr];
+            o_valid <= 1'b1;
             rd_ptr  <= rd_ptr + 1;
+        end else begin
+            o_valid <= 1'b0;
         end
         
         if(wr && !full) begin
@@ -37,7 +42,7 @@ always_ff @(posedge clk) begin
     if(rst) begin
         roll <= 1'b0;
     end else begin
-        if(wr && !fulll && (wr_ptr == DEPTH-1)) begin
+        if(wr && !full && (wr_ptr == DEPTH-1)) begin
             roll <= 1'b1;
         end else if(rd && !empty && (rd_ptr == DEPTH-1)) begin
             roll <= 1'b0;

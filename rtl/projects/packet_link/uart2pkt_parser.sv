@@ -121,15 +121,8 @@ always_ff @(posedge clk or posedge rst) begin
     end
 end
 
-// Reverse the payload bytes
-always_comb begin
-    for (int i = 0; i < PD_LEN; i++) begin
-        pd_rev[i*8 +: 8] = pd[(PD_LEN - 1 - i)*8 +: 8];
-    end
-end
-
 // Output
 assign o_valid = packet_good;
-//assign o_data  = {END_BYTE, checksum, pd_rev, pkt_length, pkt_type, START_BYTE};
-assign o_data = pd;
+assign o_data  = {END_BYTE, checksum, pd, pkt_length, pkt_type, START_BYTE};
+
 endmodule
