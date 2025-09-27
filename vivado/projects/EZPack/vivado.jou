@@ -1,0 +1,48 @@
+#-----------------------------------------------------------
+# Vivado v2025.1 (64-bit)
+# SW Build 6140274 on Wed May 21 22:58:25 MDT 2025
+# IP Build 6138677 on Thu May 22 03:10:11 MDT 2025
+# SharedData Build 6139179 on Tue May 20 17:58:58 MDT 2025
+# Start of session at: Sat Sep 27 16:42:12 2025
+# Process ID         : 386987
+# Current directory  : /home/md/Work/hdl/vivado/projects/EZPack
+# Command line       : vivado
+# Log file           : /home/md/Work/hdl/vivado/projects/EZPack/vivado.log
+# Journal file       : /home/md/Work/hdl/vivado/projects/EZPack/vivado.jou
+# Running On         : mdxps15
+# Platform           : Ubuntu
+# Operating System   : Ubuntu 24.04.3 LTS
+# Processor Detail   : Intel(R) Core(TM) i7-10750H CPU @ 2.60GHz
+# CPU Frequency      : 3602.389 MHz
+# CPU Physical cores : 6
+# CPU Logical cores  : 12
+# Host memory        : 16501 MB
+# Swap memory        : 4294 MB
+# Total Virtual      : 20796 MB
+# Available Virtual  : 16254 MB
+#-----------------------------------------------------------
+start_gui
+create_project EZPack /home/md/Work/hdl/vivado/projects/EZPack/EZPack -part xc7a35tcpg236-1
+set_property board_part digilentinc.com:basys3:part0:1.2 [current_project]
+add_files {/home/md/Work/hdl/rtl/projects/EZPack/src/ezp_encode.sv /home/md/Work/hdl/rtl/projects/EZPack/ezpack_top.sv /home/md/Work/hdl/rtl/projects/EZPack/src/ezp_decode.sv /home/md/Work/hdl/rtl/projects/EZPack/src/ezp_uart_tx.sv /home/md/Work/hdl/rtl/projects/EZPack/src/ezp_uart_rx.sv /home/md/Work/hdl/rtl/common/uart/uart_rx.sv /home/md/Work/hdl/rtl/common/basic/debounce.sv /home/md/Work/hdl/rtl/common/basic/fifo.sv /home/md/Work/hdl/rtl/common/basic/dff.sv /home/md/Work/hdl/rtl/common/basic/edge_detect.sv /home/md/Work/hdl/rtl/common/basic/ssd_ctrl.sv /home/md/Work/hdl/rtl/common/basic/clk_divider.sv /home/md/Work/hdl/rtl/common/uart/uart_tx.sv}
+import_files -fileset constrs_1 -force -norecurse /home/md/Work/hdl/vivado/constraint_files/basys3/basys3_master.xdc
+update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
+remove_files  /home/md/Work/hdl/rtl/common/basic/debounce.sv
+remove_files  /home/md/Work/hdl/rtl/common/basic/debounce.sv
+update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
+remove_files  {/home/md/Work/hdl/rtl/common/basic/clk_divider.sv /home/md/Work/hdl/rtl/common/basic/dff.sv /home/md/Work/hdl/rtl/common/basic/edge_detect.sv}
+launch_runs impl_1 -to_step write_bitstream -jobs 6
+wait_on_run impl_1
+open_hw_manager
+connect_hw_server -allow_non_jtag
+open_hw_target
+set_property PROGRAM.FILE {/home/md/Work/hdl/vivado/projects/EZPack/EZPack/EZPack.runs/impl_1/top.bit} [get_hw_devices xc7a35t_0]
+current_hw_device [get_hw_devices xc7a35t_0]
+refresh_hw_device -update_hw_probes false [lindex [get_hw_devices xc7a35t_0] 0]
+set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
+set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
+set_property PROGRAM.FILE {/home/md/Work/hdl/vivado/projects/EZPack/EZPack/EZPack.runs/impl_1/top.bit} [get_hw_devices xc7a35t_0]
+program_hw_devices [get_hw_devices xc7a35t_0]
+refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
