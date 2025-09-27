@@ -93,22 +93,22 @@ end
 // Lookup table to match BCD number to SSD encoding for LED display.
 always @(*) begin
   case(bcd_digit)
-    4'd0:  o_led = ZERO; 
-    4'd1:  o_led = ONE;
-    4'd2:  o_led = TWO;
-    4'd3:  o_led = THREE;
-    4'd4:  o_led = FOUR;
-    4'd5:  o_led = FIVE;
-    4'd6:  o_led = SIX;
-    4'd7:  o_led = SEVEN;
-    4'd8:  o_led = EIGHT;
-    4'd9:  o_led = NINE;
-    4'd10: o_led = CHAR_A;
-    4'd11: o_led = CHAR_B;
-    4'd12: o_led = CHAR_C;
-    4'd13: o_led = CHAR_D;
-    4'd14: o_led = CHAR_E;
-    4'd15: o_led = CHAR_F;
+    4'h0:   o_led = ZERO; 
+    4'h1:   o_led = ONE;
+    4'h2:   o_led = TWO;
+    4'h3:   o_led = THREE;
+    4'h4:   o_led = FOUR;
+    4'h5:   o_led = FIVE;
+    4'h6:   o_led = SIX;
+    4'h7:   o_led = SEVEN;
+    4'h8:   o_led = EIGHT;
+    4'h9:   o_led = NINE;
+    4'hA:   o_led = CHAR_A;
+    4'hB:   o_led = CHAR_B;
+    4'hC:   o_led = CHAR_C;
+    4'hD:   o_led = CHAR_D;
+    4'hE:   o_led = CHAR_E;
+    4'hF:   o_led = CHAR_F;
 
     default: o_led = CHAR_DASH;
   endcase
