@@ -1,7 +1,7 @@
-// NCLKS_PER_BIT = (Fclk)/(BR)
-// Example: 25 MHz Clock, 115200 baud UART
-// NCLKS_PER_BIT = (25000000)/(115200) = 217
-module uart_rx #(parameter NCLKS_PER_BIT = 217) (
+module uart_rx #(   parameter CLK_RATE      = 100_000_000,
+                    parameter BAUD_RATE     = 9600,
+                    parameter NCLKS_PER_BIT = CLK_RATE/BAUD_RATE                 
+) (
     input clk, 
     input rst,
 
@@ -24,9 +24,7 @@ typedef enum logic[2:0] {
 
 // Signals and Registers
 states_t        state, next_state;
-
 logic           r_o_rx_valid, next_o_rx_valid;
-
 logic   [7:0]   byte_mem, next_byte_mem;  
 logic   [2:0]   byte_idx, next_byte_idx;
 
@@ -41,26 +39,26 @@ assign o_rx_data   = (r_o_rx_valid) ? byte_mem : 'X;
 // Sequential Logic
 always @(posedge clk) begin
     if(rst) begin
-        state               <= IDLE;
-        byte_mem            <= '0;
-        byte_idx            <= '0;
-        clk_count           <= '0;
-        r_o_rx_valid   <= 1'b0;
+        state           <= IDLE;
+        byte_mem        <= '0;
+        byte_idx        <= '0;
+        clk_count       <= '0;
+        r_o_rx_valid    <= 1'b0;
     end else begin
-        state               <= next_state;
-        byte_mem            <= next_byte_mem;
-        byte_idx            <= next_byte_idx;
-        clk_count           <= next_clk_count;
-        r_o_rx_valid   <= next_o_rx_valid;
+        state           <= next_state;
+        byte_mem        <= next_byte_mem;
+        byte_idx        <= next_byte_idx;
+        clk_count       <= next_clk_count;
+        r_o_rx_valid    <= next_o_rx_valid;
     end
 end
 // Combinational Logic
 always @(*) begin
-    next_state               = state;
-    next_byte_mem            = byte_mem;
-    next_byte_idx            = byte_idx;
-    next_clk_count           = clk_count;
-    next_o_rx_valid     = r_o_rx_valid;
+    next_state      = state;
+    next_byte_mem   = byte_mem;
+    next_byte_idx   = byte_idx;
+    next_clk_count  = clk_count;
+    next_o_rx_valid = r_o_rx_valid;
     case(state)
         IDLE: begin
             if(~i_rx_data) begin // Start bit
@@ -80,8 +78,8 @@ always @(*) begin
                     next_state  = IDLE;
                 end
             end else begin
-                next_clk_count      = clk_count + 1;
-                next_state          = START;
+                next_clk_count  = clk_count + 1;
+                next_state      = START;
             end
         end
 
@@ -106,18 +104,18 @@ always @(*) begin
 
         STOP: begin
             if (clk_count == NCLKS_PER_BIT-1) begin
-                next_clk_count          = '0;
-                next_state              = DONE;
-                next_o_rx_valid    = 1'b1; 
+                next_clk_count      = '0;
+                next_state          = DONE;
+                next_o_rx_valid     = 1'b1; 
             end else begin
-                next_clk_count          = clk_count + 1;
-                next_state              = STOP;
+                next_clk_count      = clk_count + 1;
+                next_state          = STOP;
             end
         end
 
         DONE: begin
-            next_o_rx_valid        = 1'b0;
-            next_state                  = IDLE;
+            next_o_rx_valid         = 1'b0;
+            next_state              = IDLE;
         end
     endcase
 end
