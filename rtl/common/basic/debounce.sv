@@ -6,7 +6,11 @@ module debounce (
 );
 
 // Make this a lower value for simulation so you can actually see something in the waves.
-parameter DIV = 31_250_000;
+`ifdef SIM
+    parameter DIV = 31_250_000;
+`else
+    parameter DIV = 2;
+`endif
 
 logic slow_clk; // 4MHz clock
 clk_divider #(

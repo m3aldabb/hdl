@@ -1,0 +1,4 @@
+../rtl/common/basic/debounce.sv
+../rtl/common/basic/edge_detect.sv
+../rtl/common/basic/dff.sv
+../rtl/common/basic/clk_divider.sv
