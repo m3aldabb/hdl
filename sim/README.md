@@ -27,7 +27,7 @@ Each `<testbench>.files` should contain a **list of RTL source files** required 
 
 ### Example: `clk_divider_tb.files`
 
-```
+```bash
 ../rtl/common/basic/clk_divider.sv
 ```
 
@@ -39,7 +39,7 @@ Each `<testbench>.files` should contain a **list of RTL source files** required 
 
 ### 1. List available testbenches
 
-```
+```bash
 make list
 ```
 
@@ -49,14 +49,15 @@ Prints all `*_tb.sv` testbenches available to run.
 
 ### 2. Compile and run a single testbench
 
-```
-make run TB=<testbench> PARAMS="PARAM1=VALUE1 PARAM2=VALUE2"
+```bash
+make run TB=<testbench> PARAMS="PARAM1=VALUE1 PARAM2=VALUE2" DEFINES="MACRO1 MACRO2=VALUE"
 ```
 
-Example:
+Examples:
 
-```
+``` bash
 make run TB=clk_divider_tb PARAMS="DIV=7"
+make run TB=debounce_tb DEFINES="DIV=4 DEBUG"
 ```
 
 - Compiles only the RTL files listed in `clk_divider_tb.files`.  
@@ -68,7 +69,7 @@ make run TB=clk_divider_tb PARAMS="DIV=7"
 
 ### 3. View waveforms
 
-```
+```bash
 make waves TB=<testbench>
 ```
 
@@ -78,7 +79,7 @@ make waves TB=<testbench>
 
 ### 4. Run all testbenches (sweep)
 
-```
+```bash
 make sweep
 ```
 
@@ -89,7 +90,7 @@ make sweep
 
 ### 5. Clean outputs
 
-```
+```bash
 make clean
 ```
 
@@ -137,7 +138,7 @@ $dumpfile("new_tb.vcd");
 
 4. Run your new testbench:
 
-```
+```bash
 make run TB=new_tb PARAMS="PARAM1=VALUE"
 ```
 

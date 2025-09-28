@@ -31,7 +31,7 @@ all: run
 # Help
 # -----------------------------
 help:
-	@echo "Usage: make <target> TB=<testbench> [PARAMS=\"PARAM1=VALUE1 PARAM2=VALUE2\"]"
+	@echo "Usage: make <target> TB=<testbench> [PARAMS=\"PARAM1=VALUE1 PARAM2=VALUE2\"] [DEFINES=\"MACRO1=VALUE1 MACRO2\"]"
 	@echo ""
 	@echo "Targets:"
 	@echo "  all       - Default: run selected testbench (requires TB)"
@@ -80,14 +80,16 @@ precheck:
 # Convert PARAMS string into Icarus arguments
 # -----------------------------
 PARAM_FLAGS := $(foreach p,$(PARAMS),-P$(TB).$(p))
+DEFINE_FLAGS := $(foreach d,$(DEFINES),-D$(d))
 
 # -----------------------------
 # Compile target
 # -----------------------------
 $(OUT): precheck
-	@echo "Compiling testbench $(TB) with parameters: $(PARAMS)"
+	@echo "Compiling testbench $(TB) with parameters: $(PARAMS) defines: $(DEFINES)"
 	$(IVERILOG) -g2012 -o $(OUT) \
 	  $(PARAM_FLAGS) \
+	  $(DEFINE_FLAGS) \
 	  $(shell cat $(TB).files) \
 	  $(TB).sv
 
